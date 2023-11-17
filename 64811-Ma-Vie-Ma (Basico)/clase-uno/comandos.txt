@@ -1,0 +1,461 @@
+Microsoft Windows [Version 10.0.22621.2428]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MongoDB\Server\5.0\bin>mongosh
+Current Mongosh Log ID: 6544f77d6e9f7b15888c9a58
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.0
+MongoServerSelectionError: Server selection timed out after 2000 ms
+
+C:\Program Files\MongoDB\Server\5.0\bin>mongosh
+Current Mongosh Log ID: 6544f785db5f1b32c6b3a645
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.0
+MongoServerSelectionError: Server selection timed out after 2000 ms
+
+C:\Program Files\MongoDB\Server\5.0\bin>mongosh
+Current Mongosh Log ID: 6544f78d41ad125cc5d46006
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.0
+Using MongoDB:          5.0.6
+Using Mongosh:          1.5.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-11-03T10:31:55.152-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2023-11-03T10:31:55.153-03:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+test> print("Hola Mundo")
+Hola Mundo
+
+test> for (let i=0; i<10; i++){ print(i) }
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+test> let nombre = "Esteban"
+
+test> print(nombre)
+Esteban
+
+test> let persona = { nombre : "Esteban", apellido: "Calabria" }
+
+test> persona.nombre
+Esteban
+test> persona.apellido
+Calabria
+test> persona["nombre"]
+Esteban
+test> let persona = { "nombre" : "Esteban", apellido: "Calabria" }
+
+test> persona.nombre
+Esteban
+test> let claudia = {
+... nombre : "Claudia",
+... apellido: "Luna"
+... }
+
+test> claudia
+{ nombre: 'Claudia', apellido: 'Luna' }
+test> const pedro = {
+... nombre : "Pedro",
+... apellido : "Gimenez" }
+
+test> pedro
+{ nombre: 'Pedro', apellido: 'Gimenez' }
+test> const esteban = { nombre : "Esteban", apellido : "Calabria", fechaDeNacimiento : { dia : 20, mes : 9, año:1980 } }
+
+test> esteban.
+esteban.__proto__             esteban.constructor           esteban.hasOwnProperty        esteban.isPrototypeOf
+esteban.propertyIsEnumerable  esteban.toLocaleString        esteban.toString              esteban.valueOf
+
+esteban.apellido              esteban.fechaDeNacimiento     esteban.nombre
+
+test> esteban.fechaDeNacimiento.dia
+20
+test> typeof esteban.nombre
+string
+test> typeof esteban.fechaDeNacimiento.dia
+number
+test> typeof esteban.fechaDeNacimiento
+object
+test> let notas = [10,3,6,7,9,10,4]
+
+test> typeof notas
+object
+test> let hibrida = [12, "Hola", {valor:3} ]
+
+test> hibrida
+[ 12, 'Hola', { valor: 3 } ]
+test> db.
+db.__proto__                 db.constructor               db.hasOwnProperty            db.isPrototypeOf
+db.propertyIsEnumerable      db.toLocaleString            db.toString                  db.valueOf
+db.getMongo                  db.getName                   db.getCollectionNames        db.getCollectionInfos
+db.runCommand                db.adminCommand              db.aggregate                 db.getSiblingDB
+db.getCollection             db.dropDatabase              db.createUser                db.updateUser
+db.changeUserPassword        db.logout                    db.dropUser                  db.dropAllUsers
+db.auth                      db.grantRolesToUser          db.revokeRolesFromUser       db.getUser
+db.getUsers                  db.createCollection          db.createView                db.createRole
+db.updateRole                db.dropRole                  db.dropAllRoles              db.grantRolesToRole
+db.revokeRolesFromRole       db.grantPrivilegesToRole     db.revokePrivilegesFromRole  db.getRole
+db.getRoles                  db.currentOp                 db.killOp                    db.shutdownServer
+db.fsyncLock                 db.fsyncUnlock               db.version                   db.serverBits
+db.isMaster                  db.hello                     db.serverBuildInfo           db.serverStatus
+db.stats                     db.hostInfo                  db.serverCmdLineOpts         db.rotateCertificates
+db.printCollectionStats      db.getFreeMonitoringStatus   db.disableFreeMonitoring     db.enableFreeMonitoring
+db.getProfilingStatus        db.setProfilingLevel         db.setLogLevel               db.getLogComponents
+db.commandHelp               db.listCommands              db.sql
+
+test> show
+show databases          show dbs                show collections        show tables             show profile
+show users              show roles              show log                show logs               show startupWarnings
+show freeMonitoring     show automationNotices
+
+test> show databases
+admin           40.00 KiB
+altlasdb        76.00 KiB
+autosdb        148.00 KiB
+biodb           72.00 KiB
+catalogodb     108.00 KiB
+comidadb       112.00 KiB
+config          72.00 KiB
+ecommercedb    288.00 KiB
+empleadodb      72.00 KiB
+estadisticadb  112.00 KiB
+fabricadb      144.00 KiB
+ferreteriadb    72.00 KiB
+geodb          244.00 KiB
+gestiondb      308.00 KiB
+heladeriadb     72.00 KiB
+local           92.00 KiB
+locationdb       4.17 MiB
+moviedb         72.00 KiB
+mundialdb      212.00 KiB
+musicdb         76.00 KiB
+productosdb    112.00 KiB
+schemadb        88.00 KiB
+spotifydb      112.00 KiB
+temp            40.00 KiB
+tempdb          40.00 KiB
+test> use
+use admin          use altlasdb       use autosdb        use biodb          use catalogodb     use comidadb       use config
+use ecommercedb    use empleadodb     use estadisticadb  use fabricadb      use ferreteriadb   use geodb          use gestiondb
+use heladeriadb    use local          use locationdb     use moviedb        use mundialdb      use musicdb        use productosdb
+use schemadb       use spotifydb      use temp           use tempdb
+
+test> use libreriadb
+switched to db libreriadb
+libreriadb> show dbs
+admin           40.00 KiB
+altlasdb        76.00 KiB
+autosdb        148.00 KiB
+biodb           72.00 KiB
+catalogodb     108.00 KiB
+comidadb       112.00 KiB
+config         108.00 KiB
+ecommercedb    288.00 KiB
+empleadodb      72.00 KiB
+estadisticadb  112.00 KiB
+fabricadb      144.00 KiB
+ferreteriadb    72.00 KiB
+geodb          244.00 KiB
+gestiondb      308.00 KiB
+heladeriadb     72.00 KiB
+local           92.00 KiB
+locationdb       4.17 MiB
+moviedb         72.00 KiB
+mundialdb      212.00 KiB
+musicdb         76.00 KiB
+productosdb    112.00 KiB
+schemadb        88.00 KiB
+spotifydb      112.00 KiB
+temp            40.00 KiB
+tempdb          40.00 KiB
+libreriadb> db.
+db.__proto__                 db.constructor               db.hasOwnProperty            db.isPrototypeOf
+db.propertyIsEnumerable      db.toLocaleString            db.toString                  db.valueOf
+db.getMongo                  db.getName                   db.getCollectionNames        db.getCollectionInfos
+db.runCommand                db.adminCommand              db.aggregate                 db.getSiblingDB
+db.getCollection             db.dropDatabase              db.createUser                db.updateUser
+db.changeUserPassword        db.logout                    db.dropUser                  db.dropAllUsers
+db.auth                      db.grantRolesToUser          db.revokeRolesFromUser       db.getUser
+db.getUsers                  db.createCollection          db.createView                db.createRole
+db.updateRole                db.dropRole                  db.dropAllRoles              db.grantRolesToRole
+db.revokeRolesFromRole       db.grantPrivilegesToRole     db.revokePrivilegesFromRole  db.getRole
+db.getRoles                  db.currentOp                 db.killOp                    db.shutdownServer
+db.fsyncLock                 db.fsyncUnlock               db.version                   db.serverBits
+db.isMaster                  db.hello                     db.serverBuildInfo           db.serverStatus
+db.stats                     db.hostInfo                  db.serverCmdLineOpts         db.rotateCertificates
+db.printCollectionStats      db.getFreeMonitoringStatus   db.disableFreeMonitoring     db.enableFreeMonitoring
+db.getProfilingStatus        db.setProfilingLevel         db.setLogLevel               db.getLogComponents
+db.commandHelp               db.listCommands              db.sql
+
+libreriadb> db.createCollection("articulos")
+{ ok: 1 }
+libreriadb> show collectios
+MongoshInvalidInputError: [COMMON-10001] 'collectios' is not a valid argument for "show".
+libreriadb> show collections
+articulos
+libreriadb> show dbs
+admin           40.00 KiB
+altlasdb        76.00 KiB
+autosdb        148.00 KiB
+biodb           72.00 KiB
+catalogodb     108.00 KiB
+comidadb       112.00 KiB
+config         108.00 KiB
+ecommercedb    288.00 KiB
+empleadodb      72.00 KiB
+estadisticadb  112.00 KiB
+fabricadb      144.00 KiB
+ferreteriadb    72.00 KiB
+geodb          244.00 KiB
+gestiondb      308.00 KiB
+heladeriadb     72.00 KiB
+libreriadb       8.00 KiB
+local           92.00 KiB
+locationdb       4.17 MiB
+moviedb         72.00 KiB
+mundialdb      212.00 KiB
+musicdb         76.00 KiB
+productosdb    112.00 KiB
+schemadb        88.00 KiB
+spotifydb      112.00 KiB
+temp            40.00 KiB
+tempdb          40.00 KiB
+libreriadb>
+
+libreriadb> //select * from articulos
+
+libreriadb> db.articulos.
+db.articulos.__proto__                        db.articulos.constructor
+db.articulos.hasOwnProperty                   db.articulos.isPrototypeOf
+db.articulos.propertyIsEnumerable             db.articulos.toLocaleString
+db.articulos.toString                         db.articulos.valueOf
+db.articulos.aggregate                        db.articulos.bulkWrite
+db.articulos.countDocuments                   db.articulos.deleteMany
+db.articulos.deleteOne                        db.articulos.distinct
+db.articulos.estimatedDocumentCount           db.articulos.find
+db.articulos.findOne                          db.articulos.renameCollection
+db.articulos.findOneAndDelete                 db.articulos.findOneAndReplace
+db.articulos.findOneAndUpdate                 db.articulos.insertMany
+db.articulos.insertOne                        db.articulos.isCapped
+db.articulos.replaceOne                       db.articulos.updateMany
+db.articulos.updateOne                        db.articulos.compactStructuredEncryptionData
+db.articulos.convertToCapped                  db.articulos.createIndexes
+db.articulos.createIndex                      db.articulos.ensureIndex
+db.articulos.getIndexes                       db.articulos.getIndexSpecs
+db.articulos.getIndices                       db.articulos.getIndexKeys
+db.articulos.dropIndexes                      db.articulos.dropIndex
+db.articulos.totalIndexSize                   db.articulos.getDB
+db.articulos.getMongo                         db.articulos.dataSize
+db.articulos.storageSize                      db.articulos.totalSize
+db.articulos.drop                             db.articulos.exists
+db.articulos.getFullName                      db.articulos.getName
+db.articulos.runCommand                       db.articulos.explain
+db.articulos.stats                            db.articulos.latencyStats
+db.articulos.initializeOrderedBulkOp          db.articulos.initializeUnorderedBulkOp
+db.articulos.getPlanCache                     db.articulos.validate
+db.articulos.hideIndex                        db.articulos.unhideIndex
+
+libreriadb> db.articulos.find()
+
+libreriadb> db.articulos.aggregate()
+
+libreriadb> db.articulos.insertOne({nombre:"Resaltador", precio:350})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6545028a6925dbb203927781")
+}
+libreriadb> db.articulos.find()
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  }
+]
+libreriadb> db.articulos.insertOne({nombre:"Marcador", marca:"Castels", precio:350})
+{
+  acknowledged: true,
+  insertedId: ObjectId("654503966925dbb203927782")
+}
+libreriadb> db.articulos.find()
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  }
+]
+libreriadb> let compas = {nombre:"Compas", size : "Small", precio : 500}
+
+libreriadb> db.articulos.insertOne(compas)
+{
+  acknowledged: true,
+  insertedId: ObjectId("654504b36925dbb203927783")
+}
+libreriadb> db.a
+db.adminCommand  db.aggregate     db.auth          db.articulos
+
+libreriadb> db.articulos.find()
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654504b36925dbb203927783"),
+    nombre: 'Compas',
+    size: 'Small',
+    precio: 500
+  }
+]
+libreriadb> db.articulos.aggregate()
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654504b36925dbb203927783"),
+    nombre: 'Compas',
+    size: 'Small',
+    precio: 500
+  }
+]
+libreriadb> db.articulos.find({nombre:"Resaltador"})
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  }
+]
+libreriadb> db.articulos.find({nombre:"resaltador"})
+
+libreriadb> >
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | >
+    | ^
+  2 |
+
+libreriadb> <
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | <
+    | ^
+  2 |
+
+libreriadb> //Operadores MongoDB
+
+libreriadb>
+
+libreriadb> //$gt = greater than  (>)
+
+libreriadb> //$lt = lower than    (<)
+
+libreriadb> //$gte = greater than equals (>=)
+
+libreriadb> //$lte = lower than equals (<=)
+
+libreriadb> //$eq = equals (=)  no se usa
+
+libreriadb> db.articulos.find({precio:350})
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  }
+]
+libreriadb> db.articulos.find({precio:{$eq:350}})
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  }
+]
+libreriadb> //como obtengo los productos que salen menos que 500
+
+libreriadb> db.articulos.find({precio:{$lt:500}})
+[
+  {
+    _id: ObjectId("6545028a6925dbb203927781"),
+    nombre: 'Resaltador',
+    precio: 350
+  },
+  {
+    _id: ObjectId("654503966925dbb203927782"),
+    nombre: 'Marcador',
+    marca: 'Castels',
+    precio: 350
+  }
+]
+libreriadb> db.articulos.find({precio:{$gte:500}})
+[
+  {
+    _id: ObjectId("654504b36925dbb203927783"),
+    nombre: 'Compas',
+    size: 'Small',
+    precio: 500
+  }
+]
+libreriadb>

@@ -1,0 +1,149 @@
+Invocar al dios Mongo (Servidor)
+
+   mongod
+
+Conectarse desde la consola
+
+  mongo
+
+Listar las bases de datos 
+
+  show dbs
+
+Elegir una base existende como la actual
+
+  use censodb
+
+Listar los metodos del objeto db (representa la base actual)
+
+  db.[TAB TAB]
+
+Saber en que base estoy parado
+
+  db.stats()
+
+Eliminar la base de datos actual (PELIGRO)
+
+  db.dropDatabase()
+
+Crear una base de datos
+
+   use fabricadb
+
+Creo una coleccion
+
+   db.createCollection("empleados")
+
+Pensamos el esquema de la coleccion empleados
+
+   (apellido:string, direccion:{}, legajo:int, fechaIngreso:Date, activo:boolean, horarios: [{ini, fin}])
+
+
+Crear un objeto empleado
+
+    var paloma = { apellido : "Herrera" };
+
+Agrego un campo al objeto
+   
+    paloma.legajo = 1;
+
+Muestro el objeto
+    
+    paloma
+
+Salvo a paloma en la base de datos (INSERT)
+
+  db.empleados.save(paloma)
+  paloma
+
+Listo la tabla de empleados
+
+  db.empleados.find()
+  db.empleados.aggregate()
+  db.empleados.find().pretty()
+
+Explicar una consulta
+
+  db.empleados.find().explain()
+
+Realizo una busqueda por id
+  
+  db.empleados.find({ _id : new ObjectId("62879d173fa66523f6ab6424") })
+  db.empleados.find({ _id : ObjectId("62879d173fa66523f6ab6424") })
+
+Creo la direccion al empleado en memoria
+
+> paloma.direccion = {
+... calle : "Siempreviva",
+... altura : 742,
+... ciudad : "Springfield"
+... }
+
+Muestro que en la base tengo una version distinta del objeto que en memoria
+
+> paloma
+{
+        "apellido" : "HERRERA",
+        "legajo" : 1,
+        "fechaIngreso" : ISODate("2022-05-20T13:47:27.578Z"),
+        "activo" : true,
+        "_id" : ObjectId("62879d173fa66523f6ab6424"),
+        "direccion" : {
+                "calle" : "Siempreviva",
+                "ciudad" : "Springfield",
+                "altura" : 742
+        }
+}
+> db.empleados.findOne()
+{
+        "_id" : ObjectId("62879d173fa66523f6ab6424"),
+        "apellido" : "HERRERA",
+        "legajo" : 1,
+        "fechaIngreso" : ISODate("2022-05-20T13:47:27.578Z"),
+        "activo" : true
+}
+
+Actualizo mi version del empleado en la base de datos
+
+> db.empleados.save(paloma)
+> db.empleados.findOne()
+
+Quiero listar los que viven en la calle siempreviva
+
+//   > db.empleados.find ({direccion.calle:"Siempreviva"})    <<<<< No se puede
+> db.empleados.find ({"direccion.calle":"Siempreviva"})
+
+Modifico la coleccion con el metodo update (Le agrego el nombre)
+
+> db.empleados.update({legajo:1},{$set:{nombre:"Virginia"}})
+
+Hago una consulta con proyeccion
+
+> db.empleados.find({},{legajo:1, nombre:1, apellido:1}).pretty()
+> db.empleados.find({},{_id:0, legajo:1, nombre:1, apellido:1}).pretty()
+
+Ahora actualizo mi objeto en memoria con mi version en la base de datos
+
+> var paloma = db.empleados.findOne({legajo:1})
+
+Agregar el campo sueldo a paloma con 100000 (con update, directo a la base)
+
+> db.empleados.update({legajo:1},{$set:{sueldo:100}})
+
+Le sumo al sueldo
+
+> db.empleados.update({legajo:1},{$inc:{sueldo:99900}})
+
+Subirle un 10% de Sueldo
+
+> db.empleados.update({legajo:1},{$mul:{sueldo:1.1}})
+
+Agrego un array a la paloma en memoria
+
+> paloma.horarios = [{inicio:new Date("2022-05-19 08:00"), fin : new Date("2022-05-19 15:00")}] 
+
+Actualizo la base
+
+> db.empleados.save(paloma)
+
+

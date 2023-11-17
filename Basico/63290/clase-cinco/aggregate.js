@@ -1,0 +1,1 @@
+db.canciones.aggregate().forEach(res=>print((res)));

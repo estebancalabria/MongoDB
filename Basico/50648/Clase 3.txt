@@ -1,0 +1,149 @@
+
+>use fabricadb
+
+>show collectios
+
+Creo una lista de nombres
+
+  var nombres = ["Pablo","Rodrigo","Fausto","Maria","Mercedes","Nicolas","Erika","David","Facundo","Matias","Neftali"];
+
+Obtengo un numero al azar
+
+   _rand()
+
+Veo la longitud del arreglo
+
+  nombres.length
+
+Un numero aleatorio entre 0 y la longitud del array
+
+   Math.floor(_rand() * nombres.length)
+
+Obtengo un nombre al azar
+
+  nombres[Math.floor(_rand() * nombres.length)];
+
+Creo una lista de apellido, la muestro y cuento sus items
+
+  var apellidos = ["Perez","Gomez","Fernandez","Quintana","Olivero","Girardi","Lopez","Argento","Smith","Acosta","Rivadavoa","Calabria"]
+  apellidos
+  apellidos.length
+
+Obtengo un apellido al azar
+
+  apellidos[Math.floor(_rand()*apellidos.length)];
+
+Obtengo el unico empleado de la clase pasada y lo muestro
+
+  var empleado = db.empleados.findOne();
+  empleado
+
+(Si no tengo el empleado)
+ var empleado = {
+         "_id" : ObjectId("62879d173fa66523f6ab6424"),
+         "apellido" : "HERRERA",
+         "legajo" : 1,
+         "fechaIngreso" : ISODate("2022-05-20T13:47:27.578Z"),
+         "activo" : true,
+         "direccion" : {
+                 "calle" : "Siempreviva",
+                 "ciudad" : "Springfield",
+                 "altura" : 742
+         },
+         "nombre" : "Virginia",
+         "sueldo" : 110000.00000000001,
+         "horarios" : [
+                 {
+                         "inicio" : ISODate("2022-05-19T11:00:00Z"),
+                         "fin" : ISODate("2022-05-19T18:00:00Z")
+                 }
+         ]
+ };
+db.empleados.save(empleado);
+
+Muestro el funcionamiento de un for
+
+ for (let i=2; i<10; i++) { print (i) }
+
+Creo una lista de 1000 empleados
+
+ for (let i=2; i<1000; i++) {
+    let nuevo = {};
+    nuevo.legajo = i;
+    nuevo.nombre = nombres[Math.floor(_rand() * nombres.length)];
+    nuevo.apellido = apellidos[Math.floor(_rand()*apellidos.length)];
+    nuevo.sueldo = Math.floor(_rand()*100000);
+    nuevo.activo = true;
+    nuevo.direccion = empleado.direccion;
+    nuevo.horarios = empleado.horarios;
+    db.empleados.save(nuevo);
+}
+
+Listo todos los empleados
+
+  db.empleados.find()
+
+Listo todos los empleados pero hago una proyeccion
+
+  db.empleados.find({},{ nombre : 1 });
+  db.empleados.find({},{ nombre : 1, apellido : 1 });
+  db.empleados.find({},{ _id:0, nombre : 1, apellido : 1 });
+
+Listo con un fitro
+
+  db.empleados.find({nombre:"Pablo"})
+  db.empleados.find({nombre:"Pablo"}, {nombre:1, apellido:1});
+
+Cursores
+  
+   db.empleados.find({},{ nombre : 1, apellido : 1 });
+   it 
+   it 
+   it 
+   ...
+
+Muestro el sueldo y luego listo los que tienen un sueldo a mil pesos
+
+  db.empleados.find({},{ _id:0, nombre : 1, apellido : 1, sueldo:1 })
+  db.empleados.find({ sueldo : { $lte : 10000}},{ _id:0, nombre : 1, apellido : 1, sueldo:1 })
+
+Operadores de comparacion
+   $lt
+   $lte
+   $gt
+   $gte
+   $eq
+
+Muestro los que tienen un sueldo mayor a 90000
+
+Borro los que tienen un sueldo menor a 1000
+
+   db.empleados.deleteMany({ sueldo : { $lte : 1000}});
+
+Cuento la cantidad de empleados restantes
+  
+   db.empleados.find({}).count()
+
+Salteo el primer resultado
+   
+   db.empleados.find({}).skip(1)
+   db.empleados.find({}, {nombre:1}).skip(10).limit(5)
+
+Cuento la cantidad de Pablos
+  
+   db.empleados.find({ nombre : "Pablo"}, {}).count()
+
+Listo los Pablo PErez
+
+  db.empleados.find({ nombre : "Pablo", apellido : "Perez"}, {});
+  db.empleados.find({ nombre : "Pablo", apellido : "Perez"}, {}).count()
+
+Listo los Pablo Perez desde un cursor
+
+  var pabloPerez = db.empleados.find({nombre:/Pablo/, apellido:/Perez/});
+  pabloPerez.forEach( function(p){print(p.nombre)} );
+
+Me guardo el cursor con todos menos el primero
+  
+  var pabloPerez = db.empleados.find({nombre:/Pablo/, apellido:/Perez/}).skip(1);
+  pabloPerez.forEach( function(p) { db.empleados.remove(p)});
